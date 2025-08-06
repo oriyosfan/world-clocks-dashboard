@@ -1,9 +1,9 @@
 'use client';
-
+import '@infra/antd-react19-compat';
 import { useTheme } from 'next-themes';
 import { useEffect, useMemo, useState } from 'react';
 
-import { ConfigProvider } from '@infra/antd-bridge';
+import { ConfigProvider } from '@infra/bridge';
 
 import { getAntdThemeConfig } from './theme/tokens';
 import { ThemeMode, isThemeMode, type ThemeModeType } from './theme/types';

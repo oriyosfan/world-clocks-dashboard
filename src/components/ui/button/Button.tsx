@@ -1,12 +1,11 @@
 'use client';
 
-import { Button as AntButton, type ButtonProps as AntButtonProps } from 'antd';
-import { forwardRef } from 'react';
+import { Button as AppButton, type ButtonProps as AppButtonProps } from '@infra/bridge';
 
-export type ButtonProps = AntButtonProps & {
-  'data-track'?: string; // place for analytics hooks if you want
+export type ButtonProps = AppButtonProps & {
+  // Future props
 };
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(props, ref) {
-  return <AntButton ref={ref} {...props} />;
-});
+export function Button(props: ButtonProps) {
+  return <AppButton {...props} />;
+}

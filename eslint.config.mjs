@@ -186,13 +186,21 @@ export default [
         'error',
         {
           paths: [{ name: 'antd', message: 'Import AntD only via your UI folder.' }],
-          patterns: [{ group: ['antd/*'], message: 'Import AntD only via your UI folder.' }],
+          patterns: [
+            { group: ['antd'], message: 'Import AntD only via your UI folder.' },
+            { group: ['@/components/ui/*'], message: 'Import UI components only via your UI folder.' },
+            { group: ['antd/*'], message: 'Import AntD only via your UI folder.' },
+            {
+              group: ['@/features/*/*'],
+              message: 'Import from the feature root (e.g., "@/features/foo"), not deep paths.',
+            },
+          ],
         },
       ],
     },
   },
   {
-    files: ['src/components/ui/**/*.{ts,tsx}', 'src/components/infra/antd-bridge.ts'], // or design-system/primitives/components/*
+    files: ['src/components/ui/**/*.{ts,tsx}', 'src/components/infra/bridge.ts'],
     rules: { 'no-restricted-imports': 'off' },
   },
 ];
