@@ -1,9 +1,10 @@
 import { AntdRegistry } from '@ant-design/nextjs-registry';
-import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 
 import '@/app/globals.css';
 import { DesignSystemThemeProvider } from '@/components/providers/DesignSystemThemeProvider';
+
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = { title: 'Neon World Clocks' };
 

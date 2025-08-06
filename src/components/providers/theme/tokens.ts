@@ -1,6 +1,7 @@
+import { antdTheme } from '@infra/antd-bridge';
+
 import { ThemeMode, type ThemeModeType } from './types';
 
-import { antdTheme } from '@infra/antd-bridge';
 import type { ConfigProvider } from '@infra/antd-bridge'; // ← type group last
 // Infer AntD ThemeConfig from ConfigProvider props (keeps types aligned with your antd version)
 type AntdThemeConfig = NonNullable<Parameters<typeof ConfigProvider>[0]['theme']>;

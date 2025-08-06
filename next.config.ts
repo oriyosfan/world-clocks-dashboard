@@ -1,6 +1,7 @@
 import { createRequire } from 'node:module';
 
 import ESLintPlugin from 'eslint-webpack-plugin';
+
 import type { NextConfig } from 'next';
 import type { Configuration as WebpackConfig, WebpackPluginInstance } from 'webpack';
 

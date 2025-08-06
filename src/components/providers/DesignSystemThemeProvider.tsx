@@ -1,13 +1,14 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import type { PropsWithChildren } from 'react';
 import { useEffect, useMemo, useState } from 'react';
+
+import { ConfigProvider } from '@infra/antd-bridge';
 
 import { getAntdThemeConfig } from './theme/tokens';
 import { ThemeMode, isThemeMode, type ThemeModeType } from './theme/types';
 
-import { ConfigProvider } from '@infra/antd-bridge';
+import type { PropsWithChildren } from 'react';
 
 export function DesignSystemThemeProvider({ children }: PropsWithChildren) {
   const { resolvedTheme } = useTheme();

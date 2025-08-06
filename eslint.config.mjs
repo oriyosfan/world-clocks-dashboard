@@ -72,7 +72,14 @@ export default [
 
       // Import hygiene
       'import/no-default-export': 'error',
-      'import/order': ['error', { 'newlines-between': 'always', alphabetize: { order: 'asc', caseInsensitive: true } }],
+      'import/order': [
+        'error',
+        {
+          groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
+          'newlines-between': 'always',
+          alphabetize: { order: 'asc', caseInsensitive: true },
+        },
+      ],
 
       // TS strictness (type-aware)
       '@typescript-eslint/consistent-type-imports': [

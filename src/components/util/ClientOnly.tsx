@@ -1,7 +1,8 @@
 'use client';
 
-import type { PropsWithChildren } from 'react';
 import { useEffect, useState } from 'react';
+
+import type { PropsWithChildren } from 'react';
 
 export function ClientOnly({ children }: PropsWithChildren) {
   const [mounted, setMounted] = useState(false);
