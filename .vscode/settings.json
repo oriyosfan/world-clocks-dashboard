@@ -1,0 +1,25 @@
+{
+  // Use the workspace's TypeScript version (matches your tsconfig + CI)
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  // By default VS Code downgrades some TS checks (like unused vars) to warnings.
+  // Turn that OFF so TS6133 and friends appear as ERRORS (red squiggles).
+  "typescript.reportStyleChecksAsWarnings": false,
+
+  // ESLint: ensure the extension runs with flat config and on TS files
+  "eslint.useFlatConfig": true,
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+
+  // Use Prettier for formatting; ESLint handles linting (no format overlap)
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+
+  // Run ESLint fixes only when explicitly requested (keeps control tight)
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  // Optional: show as many problems as possible in Problems panel
+  "problems.showCurrentInStatus": true
+}
