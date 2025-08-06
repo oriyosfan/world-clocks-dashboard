@@ -16,7 +16,11 @@
 
     // Base URL + app alias (create-next-app default)
     "baseUrl": ".",
-    "paths": { "@/*": ["./*"] },
+    "paths": {
+      "@/*": ["src/*"],
+      "@ui/*": ["src/components/ui/*"],
+      "@infra/*": ["src/components/infra/*"]
+    },
 
     // Strictness (safest settings for app code)
     "strict": true,

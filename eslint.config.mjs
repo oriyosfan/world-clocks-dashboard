@@ -41,18 +41,18 @@ const stylisticTypeCheckedTS = tseslint.configs.stylisticTypeChecked.map((c) => 
 // disable this rule because it is a special file that is used to configure the eslint rules and it has to be a default export
 // eslint-disable-next-line import/no-anonymous-default-export
 export default [
-  // 0) Ignore build artifacts
+  // Ignore build artifacts
   { ignores: ['.next/**', 'node_modules/**', 'dist/**', 'build/**', 'coverage/**'] },
 
-  // 1) Base JS rules
+  // Base JS rules
   js.configs.recommended,
 
-  // 2) Next.js shareable configs via FlatCompat
+  // Next.js shareable configs via FlatCompat
   ...compat.config({
     extends: ['next/core-web-vitals', 'next/typescript'],
   }),
 
-  // 3) TypeScript strict + typed presets (TS ONLY)
+  // TypeScript strict + typed presets (TS ONLY)
   ...typeCheckedTS,
   ...stylisticTypeCheckedTS,
 
@@ -78,10 +78,6 @@ export default [
       '@typescript-eslint/consistent-type-imports': [
         'error',
         { prefer: 'type-imports', fixStyle: 'separate-type-imports' },
-      ],
-      '@typescript-eslint/explicit-function-return-type': [
-        'error',
-        { allowExpressions: true, allowHigherOrderFunctions: true },
       ],
       '@typescript-eslint/no-explicit-any': 'error',
       '@typescript-eslint/no-unused-vars': [
@@ -127,7 +123,7 @@ export default [
     },
   },
 
-  // 5) JS/MJS/CJS files — typed linting OFF (prevents crashes in config files)
+  // JS/MJS/CJS files — typed linting OFF (prevents crashes in config files)
   {
     files: ['**/*.js', '**/*.mjs', '**/*.cjs'],
     languageOptions: {
@@ -148,7 +144,7 @@ export default [
     },
   },
 
-  // 6) Next special files & local config files: allow default export + relax a few rules
+  // Next special files & local config files: allow default export + relax a few rules
   {
     files: [
       'src/app/**/page.tsx',
@@ -172,6 +168,24 @@ export default [
     },
   },
 
-  // 7) Keep Prettier last to disable conflicting rules
+  // Keep Prettier last to disable conflicting rules
   prettierConfig,
+
+  {
+    files: ['**/*.{ts,tsx,js,jsx}'],
+    rules: {
+      curly: ['error', 'all'],
+      'no-restricted-imports': [
+        'error',
+        {
+          paths: [{ name: 'antd', message: 'Import AntD only via your UI folder.' }],
+          patterns: [{ group: ['antd/*'], message: 'Import AntD only via your UI folder.' }],
+        },
+      ],
+    },
+  },
+  {
+    files: ['src/components/ui/**/*.{ts,tsx}', 'src/components/infra/antd-bridge.ts'], // or design-system/primitives/components/*
+    rules: { 'no-restricted-imports': 'off' },
+  },
 ];
