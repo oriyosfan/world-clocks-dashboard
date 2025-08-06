@@ -2,26 +2,22 @@
   "compilerOptions": {
     // Modern JS / DOM types
     "target": "ES2022",
-    "lib": [
-      "ES2022",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+
     // ESM + bundler-friendly resolution (type-checking only; Next does the bundling)
     "module": "ESNext",
     "moduleResolution": "Bundler",
+
     // React / Next handling
     "jsx": "preserve",
     "resolveJsonModule": true,
     "allowJs": false,
     "noEmit": true,
+
     // Base URL + app alias (create-next-app default)
     "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    },
+    "paths": { "@/*": ["./*"] },
+
     // Strictness (safest settings for app code)
     "strict": true,
     "exactOptionalPropertyTypes": true,
@@ -32,30 +28,22 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "forceConsistentCasingInFileNames": true,
-    // Let TS surface unuseds early (ESLint also enforces them)
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+
     // DX
     "skipLibCheck": true,
     "incremental": true,
+    "tsBuildInfoFile": ".next/cache/ts/tsconfig.tsbuildinfo",
     "esModuleInterop": true,
     "isolatedModules": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
+
+    // *** New: keep source import/export exactly as written; force module semantics
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+
+    "plugins": [{ "name": "next" }]
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    "next-env.d.ts",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    ".next",
-    "dist",
-    "build"
-  ]
+  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", ".next", "dist", "build"]
 }

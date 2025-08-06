@@ -14,28 +14,27 @@ const nextConfig: NextConfig = {
   webpack: (config: WebpackConfig, { dev, isServer }: { dev: boolean; isServer: boolean }): WebpackConfig => {
     if (dev && !isServer) {
       config.plugins ??= [];
-      config.plugins.push(
-        new ESLintPlugin({
-          // Make sure it reads your flat config and lints all changed files
-          configType: 'flat',
-          context: process.cwd(),
-          files: ['**/*.{ts,tsx,js,mjs,cjs}'],
-          extensions: ['ts', 'tsx', 'js', 'mjs', 'cjs'],
+      const eslintPlugin: WebpackPluginInstance = new ESLintPlugin({
+        // Make sure it reads your flat config and lints all changed files
+        configType: 'flat',
+        context: process.cwd(),
+        files: ['**/*.{ts,tsx,js,mjs,cjs}'],
+        extensions: ['ts', 'tsx', 'js', 'mjs', 'cjs'],
 
-          // Make lint issues become *compile* errors → overlay
-          emitError: true,
-          emitWarning: true,
-          failOnError: false,
-          failOnWarning: false,
+        // Make lint issues become *compile* errors → overlay
+        emitError: true,
+        emitWarning: true,
+        failOnError: false,
+        failOnWarning: false,
 
-          // Avoid stale results sticking around
-          cache: false,
-          lintDirtyModulesOnly: false, // force a real re-lint when you save
+        // Avoid stale results sticking around
+        cache: false,
+        lintDirtyModulesOnly: false, // force a real re-lint when you save
 
-          eslintPath: require.resolve('eslint'),
-          formatter: 'stylish',
-        }) as unknown as WebpackPluginInstance,
-      );
+        eslintPath: require.resolve('eslint'),
+        formatter: 'stylish',
+      });
+      config.plugins.push(eslintPlugin);
     }
 
     return config;

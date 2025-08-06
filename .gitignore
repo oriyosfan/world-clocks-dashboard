@@ -10,7 +10,6 @@ out/
 dist/
 coverage/
 *.log
-.eslintcache
 
 # env
 .env*
@@ -19,3 +18,7 @@ coverage/
 # editors
 .vscode/*
 !.vscode/settings.json
+
+# prettier
+!.prettierrc.json
+!.prettierignore

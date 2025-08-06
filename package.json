@@ -5,16 +5,15 @@
   "scripts": {
     "check": "npm run lint && npm run typecheck",
     "predev": "npm i && npm run check",
-    "dev": "concurrently -k -n DEV,LINT \"next dev\" \"npm run lint:watch\"",
+    "dev": "concurrently -k -n NEXT,LINT \"next dev\" \"npm run lint:watch\"",
     "prebuild": "npm ci && npm run check",
     "build": "next build",
-    "lint": "eslint . --ext .js,.mjs,.cjs,.ts,.tsx --max-warnings 0 --cache --cache-location .eslintcache",
+    "prelint": "node -e \"require('fs').mkdirSync('.next/cache/eslint',{recursive:true})\"",
+    "lint": "eslint . --ext .js,.mjs,.cjs,.ts,.tsx --max-warnings 0 --cache --cache-location .next/cache/eslint/.eslintcache",
     "lint:watch": "nodemon --ext ts,tsx,js,mjs,cjs --watch src --watch app --watch pages --watch next.config.ts --watch postcss.config.mjs --ignore node_modules --ignore .next --exec \"npm run lint\"",
-    "lint:fix": "eslint . --ext .js,.mjs,.cjs,.ts,.tsx --fix",
+    "lint:fix": "eslint . --ext .js,.mjs,.cjs,.ts,.tsx --fix --cache --cache-location .next/cache/eslint/.eslintcache",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "start": "next start",
-    "format": "prettier . --write",
-    "format:check": "prettier . --check"
+    "start": "next start"
   },
   "dependencies": {
     "eslint-webpack-plugin": "^5.0.2",

@@ -56,7 +56,7 @@ export default [
   ...typeCheckedTS,
   ...stylisticTypeCheckedTS,
 
-  // 4) TS/TSX files — your strict rules
+  // 4) TS/TSX files — strict & minimal (no `as`, no `any` leaks, safe promises)
   {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
@@ -68,6 +68,8 @@ export default [
     },
     plugins: { prettier: prettierPlugin },
     rules: {
+      'object-shorthand': ['error', 'always', { avoidQuotes: true }],
+
       // Import hygiene
       'import/no-default-export': 'error',
       'import/order': ['error', { 'newlines-between': 'always', alphabetize: { order: 'asc', caseInsensitive: true } }],
@@ -90,6 +92,33 @@ export default [
       '@typescript-eslint/no-unnecessary-type-assertion': 'error',
       '@typescript-eslint/ban-ts-comment': ['error', { 'ts-expect-error': 'allow-with-description' }],
 
+      // Disallow `as` assertions (but NOT `as const`)
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector: 'TSAsExpression',
+          message:
+            'Avoid `as` assertions. Use proper typing, generics, narrowing, or the `satisfies` operator. `as const` is OK.',
+        },
+      ],
+      // Forbid non-null assertions `!`
+      '@typescript-eslint/no-non-null-assertion': 'error',
+      // Block unsafe `any` flows
+      '@typescript-eslint/no-unsafe-assignment': 'error',
+      '@typescript-eslint/no-unsafe-argument': 'error',
+      '@typescript-eslint/no-unsafe-call': 'error',
+      '@typescript-eslint/no-unsafe-member-access': 'error',
+      '@typescript-eslint/no-unsafe-return': 'error',
+      // Promise correctness
+      '@typescript-eslint/await-thenable': 'error',
+      '@typescript-eslint/no-misused-promises': [
+        'error',
+        {
+          checksConditionals: true,
+          checksVoidReturn: { attributes: false }, // keeps React handlers ergonomic
+        },
+      ],
+
       // General
       'no-console': ['error', { allow: ['warn', 'error'] }],
 
@@ -107,6 +136,7 @@ export default [
     },
     plugins: { prettier: prettierPlugin },
     rules: {
+      'object-shorthand': ['error', 'always', { avoidQuotes: true }],
       'import/no-default-export': 'error',
       'import/order': ['error', { 'newlines-between': 'always', alphabetize: { order: 'asc', caseInsensitive: true } }],
       'no-console': ['error', { allow: ['warn', 'error'] }],
@@ -118,7 +148,7 @@ export default [
     },
   },
 
-  // 6) Next special files: allow default export + relax a few rules
+  // 6) Next special files & local config files: allow default export + relax a few rules
   {
     files: [
       'src/app/**/page.tsx',
@@ -128,13 +158,15 @@ export default [
       'src/app/**/not-found.tsx',
       'src/app/**/error.tsx',
       'src/pages/**/*.{ts,tsx}',
+      // local config files
       'eslint.config.mjs',
       'postcss.config.mjs',
       'next.config.ts',
+      'tailwind.config.*',
     ],
     rules: {
-      'no-console': 'off',
       'import/no-default-export': 'off',
+      'no-console': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
     },
