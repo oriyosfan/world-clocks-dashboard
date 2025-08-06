@@ -6,13 +6,13 @@ import { useEffect, useMemo, useState } from 'react';
 import { ConfigProvider } from '@infra/bridge';
 
 import { getAntdThemeConfig } from './theme/tokens';
-import { ThemeMode, isThemeMode, type ThemeModeType } from './theme/types';
+import { ThemeMode, isThemeMode, type ThemeModeValue } from './theme/types';
 
 import type { PropsWithChildren } from 'react';
 
 export function DesignSystemThemeProvider({ children }: PropsWithChildren) {
   const { resolvedTheme } = useTheme();
-  const [mode, setMode] = useState<ThemeModeType>(ThemeMode.Light);
+  const [mode, setMode] = useState<ThemeModeValue>(ThemeMode.Light);
 
   useEffect(() => {
     setMode(isThemeMode(resolvedTheme) ? resolvedTheme : ThemeMode.Light);

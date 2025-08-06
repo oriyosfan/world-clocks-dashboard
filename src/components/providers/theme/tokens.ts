@@ -1,6 +1,6 @@
 import { theme } from '@infra/bridge';
 
-import { ThemeMode, type ThemeModeType } from './types';
+import { ThemeMode, type ThemeModeValue } from './types';
 
 import type { ConfigProvider } from '@infra/bridge';
 
@@ -25,7 +25,7 @@ const darkToken: AntdTokens = {
 };
 
 /** Build final AntD theme for the given mode */
-export function getAntdThemeConfig(mode: ThemeModeType): AntdThemeConfig {
+export function getAntdThemeConfig(mode: ThemeModeValue): AntdThemeConfig {
   const algorithm = mode === ThemeMode.Dark ? theme.darkAlgorithm : theme.defaultAlgorithm;
   const token = mode === ThemeMode.Dark ? { ...baseToken, ...darkToken } : { ...baseToken, ...lightToken };
   return { token, algorithm };

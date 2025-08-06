@@ -2,18 +2,18 @@
 
 import { useTheme } from 'next-themes';
 
-import { ThemeMode, type ThemeModeType } from '@/components/providers/theme/types';
+import { ThemeMode, type ThemeModeValue } from '@/components/providers/theme/types';
 import { Segmented } from '@/components/ui';
 import { ClientOnly } from '@/components/util/ClientOnly';
 
-const ThemeToggleOptions: { label: string; value: ThemeModeType }[] = [
+const ThemeToggleOptions: { label: string; value: ThemeModeValue }[] = [
   { label: '🌞 Light', value: ThemeMode.Light },
   { label: '🌙 Dark', value: ThemeMode.Dark },
 ];
 
 const ThemeToggle = () => {
   const { resolvedTheme, setTheme } = useTheme();
-  const value: ThemeModeType = resolvedTheme === ThemeMode.Dark ? ThemeMode.Dark : ThemeMode.Light;
+  const value: ThemeModeValue = resolvedTheme === ThemeMode.Dark ? ThemeMode.Dark : ThemeMode.Light;
   return <Segmented value={value} onChange={(v) => setTheme(v.toString())} options={ThemeToggleOptions} size="small" />;
 };
 

@@ -1,6 +1,7 @@
 import { createRequire } from 'node:module';
 
 import ESLintPlugin from 'eslint-webpack-plugin';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 
 import type { NextConfig } from 'next';
 import type { Configuration as WebpackConfig, WebpackPluginInstance } from 'webpack';
@@ -35,7 +36,11 @@ const nextConfig: NextConfig = {
         eslintPath: require.resolve('eslint'),
         formatter: 'stylish',
       });
-      config.plugins.push(eslintPlugin);
+      const tsCheckerPlugin: WebpackPluginInstance = new ForkTsCheckerWebpackPlugin({
+        async: false,
+        typescript: { diagnosticOptions: { semantic: true, syntactic: true } },
+      });
+      config.plugins.push(eslintPlugin, tsCheckerPlugin);
     }
 
     return config;
