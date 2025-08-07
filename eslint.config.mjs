@@ -6,6 +6,7 @@ import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
 import prettierConfig from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
+import storybook from 'eslint-plugin-storybook';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -166,6 +167,9 @@ export default [
       'postcss.config.mjs',
       'next.config.ts',
       'tailwind.config.*',
+      'vitest.config.ts',
+      '.storybook/**',
+      'src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
     ],
     rules: {
       'import/no-default-export': 'off',
@@ -203,4 +207,6 @@ export default [
     files: ['src/components/ui/**/*.{ts,tsx}', 'src/components/infra/bridge.ts'],
     rules: { 'no-restricted-imports': 'off' },
   },
+  { ignores: ['.storybook/**', 'src/**/*.stories.@(js|jsx|mjs|ts|tsx)'] },
+  ...storybook.configs['flat/recommended'],
 ];

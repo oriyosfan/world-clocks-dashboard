@@ -1,1 +1,1 @@
-export { ThemeToggleControl } from './ui/ThemeToggleControl';
+export { ThemeToggleWrapper as ThemeToggle } from './ui/ThemeToggleWrapper';

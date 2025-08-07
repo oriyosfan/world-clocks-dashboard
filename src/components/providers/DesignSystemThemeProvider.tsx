@@ -8,6 +8,7 @@ import { ConfigProvider } from '@infra/bridge';
 import { getAntdThemeConfig } from './theme/tokens';
 import { ThemeMode, isThemeMode, type ThemeModeValue } from './theme/types';
 
+import type { Decorator } from '@storybook/nextjs-vite';
 import type { PropsWithChildren } from 'react';
 
 export function DesignSystemThemeProvider({ children }: PropsWithChildren) {
@@ -22,3 +23,7 @@ export function DesignSystemThemeProvider({ children }: PropsWithChildren) {
 
   return <ConfigProvider theme={themeConfig}>{children}</ConfigProvider>;
 }
+
+export const StorybookWrapper: Decorator = (Story, context) => (
+  <DesignSystemThemeProvider>{Story(context)}</DesignSystemThemeProvider>
+);

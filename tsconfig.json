@@ -49,5 +49,15 @@
     "plugins": [{ "name": "next" }]
   },
   "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", ".next", "dist", "build"]
+  "exclude": [
+    "node_modules",
+    ".next",
+    "dist",
+    "build",
+    "**/*.stories.tsx",
+    "src/**/*.stories.tsx",
+    "**/*.stories.ts",
+    "src/**/*.stories.ts",
+    ".storybook/**/*"
+  ]
 }
