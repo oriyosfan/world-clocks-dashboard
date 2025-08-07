@@ -1,15 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
 
+import { useSelectedClocks } from '../hooks/useSelectedClocks';
 import { getTimezoneOptions } from '../utils/timezoneOptions';
 
 import { Card, type CardProps } from './Card';
 import { SelectTimezone } from './SelectTimezone';
-
-interface Clock {
-  key: string;
-  user: string;
-}
 
 const tzOptions = getTimezoneOptions();
 
@@ -36,7 +32,7 @@ const getClockCardProps = (key: string, _forceTick: number): CardProps => {
 export const Dashboard = () => {
   const [forceTick, setForceTick] = useState(0);
 
-  const [selectedClocks, setSelectedClocks] = useState<Clock[]>([]);
+  const { selectedClocks, addClock, removeClock } = useSelectedClocks();
   const [selectedTimezone, setSelectedTimezone] = useState<string>('');
 
   const availableTimezones = tzOptions.filter((tz) => !selectedClocks.some((clock) => clock.key === tz.key));
@@ -59,17 +55,13 @@ export const Dashboard = () => {
           value={selectedTimezone}
           onChange={(v) => {
             setSelectedTimezone('');
-            setSelectedClocks([...selectedClocks, { key: v, user: 'me' }]);
+            addClock({ key: v, user: 'me' });
           }}
         />
       </div>
       <div className="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {selectedClocks.map((clock) => (
-          <Card
-            key={clock.key}
-            {...getClockCardProps(clock.key, forceTick)}
-            onClose={() => setSelectedClocks(selectedClocks.filter((c) => c.key !== clock.key))}
-          />
+          <Card key={clock.key} {...getClockCardProps(clock.key, forceTick)} onClose={() => removeClock(clock.key)} />
         ))}
       </div>
     </>
