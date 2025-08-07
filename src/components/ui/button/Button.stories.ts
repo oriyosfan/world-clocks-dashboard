@@ -29,6 +29,14 @@ type Story = StoryObj<typeof meta>;
 /** Primary visual variant */
 export const Primary: Story = {};
 
+export const Default: Story = {
+  args: {
+    children: 'Click me',
+    type: 'default',
+    disabled: false,
+  },
+};
+
 /** Disabled button */
 export const Disabled: Story = {
   args: { disabled: true },
