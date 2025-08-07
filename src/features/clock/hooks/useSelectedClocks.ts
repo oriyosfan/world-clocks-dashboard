@@ -32,6 +32,10 @@ export function useSelectedClocks() {
     setSelectedClocks((prev) => prev.filter((c) => c.key !== clockKey));
   };
 
+  const updateClockUser = (clockKey: string, user: string) => {
+    setSelectedClocks((prev) => prev.map((clock) => (clock.key === clockKey ? { ...clock, user } : clock)));
+  };
+
   const clearClocks = () => {
     setSelectedClocks([]);
   };
@@ -44,6 +48,7 @@ export function useSelectedClocks() {
     selectedClocks,
     addClock,
     removeClock,
+    updateClockUser,
     clearClocks,
     hasClock,
     setSelectedClocks,

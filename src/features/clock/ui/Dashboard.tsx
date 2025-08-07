@@ -6,6 +6,7 @@ import { getTimezoneOptions } from '../utils/timezoneOptions';
 
 import { Card, type CardProps } from './Card';
 import { SelectTimezone } from './SelectTimezone';
+import { TagUserModal } from './TagUserModal';
 
 const tzOptions = getTimezoneOptions();
 
@@ -31,8 +32,10 @@ const getClockCardProps = (key: string, _forceTick: number): CardProps => {
 
 export const Dashboard = () => {
   const [forceTick, setForceTick] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedClockKey, setSelectedClockKey] = useState<string>('');
 
-  const { selectedClocks, addClock, removeClock } = useSelectedClocks();
+  const { selectedClocks, addClock, removeClock, updateClockUser } = useSelectedClocks();
   const [selectedTimezone, setSelectedTimezone] = useState<string>('');
 
   const availableTimezones = tzOptions.filter((tz) => !selectedClocks.some((clock) => clock.key === tz.key));
@@ -46,6 +49,25 @@ export const Dashboard = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const handleCardClick = (clockKey: string) => {
+    setSelectedClockKey(clockKey);
+    setModalOpen(true);
+  };
+
+  const handleModalOk = (user: string) => {
+    updateClockUser(selectedClockKey, user);
+    setModalOpen(false);
+    setSelectedClockKey('');
+  };
+
+  const handleModalCancel = () => {
+    setModalOpen(false);
+    setSelectedClockKey('');
+  };
+
+  const selectedClock = selectedClocks.find((clock) => clock.key === selectedClockKey);
+  const selectedClockProps = selectedClock ? getClockCardProps(selectedClock.key, forceTick) : null;
+
   return (
     <>
       <div className="flex items-center justify-center p-4">
@@ -55,15 +77,31 @@ export const Dashboard = () => {
           value={selectedTimezone}
           onChange={(v) => {
             setSelectedTimezone('');
-            addClock({ key: v, user: 'me' });
+            addClock({ key: v, user: '' });
           }}
         />
       </div>
       <div className="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
         {selectedClocks.map((clock) => (
-          <Card key={clock.key} {...getClockCardProps(clock.key, forceTick)} onClose={() => removeClock(clock.key)} />
+          <Card
+            key={clock.key}
+            {...getClockCardProps(clock.key, forceTick)}
+            user={clock.user}
+            onClose={() => removeClock(clock.key)}
+            onClick={() => handleCardClick(clock.key)}
+          />
         ))}
       </div>
+
+      {selectedClockProps && (
+        <TagUserModal
+          open={modalOpen}
+          onCancel={handleModalCancel}
+          onOk={handleModalOk}
+          currentUser={selectedClock?.user}
+          clockCountry={selectedClockProps.country}
+        />
+      )}
     </>
   );
 };

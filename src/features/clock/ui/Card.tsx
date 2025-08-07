@@ -11,7 +11,9 @@ export interface CardProps {
   time: string;
   offset: string;
   countryCode: string;
+  user?: string;
   onClose?: () => void;
+  onClick?: () => void;
 }
 
 export const getFlag = (code: string): React.ReactNode | null => {
@@ -19,13 +21,19 @@ export const getFlag = (code: string): React.ReactNode | null => {
   return Flag ? <Flag title={code} /> : null;
 };
 
-export const Card: React.FC<CardProps> = ({ country, time, offset, countryCode, onClose }) => (
-  <AppCard className="relative w-full rounded-xl p-0 shadow-sm transition-shadow duration-300 hover:shadow-md">
+export const Card: React.FC<CardProps> = ({ country, time, offset, countryCode, user, onClose, onClick }) => (
+  <AppCard
+    className="relative w-full cursor-pointer rounded-xl p-0 shadow-sm transition-shadow duration-300 hover:shadow-md"
+    onClick={onClick}
+  >
     {onClose && (
       <Button
         type="text"
         size="small"
-        onClick={onClose}
+        onClick={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
         icon={<CloseOutlined />}
         aria-label="Remove clock"
         className="absolute top-2 right-2 z-10 h-6 w-6 min-w-0 p-0 opacity-60 hover:opacity-100"
@@ -37,7 +45,14 @@ export const Card: React.FC<CardProps> = ({ country, time, offset, countryCode, 
         <span className={'flex h-8 w-10 items-center justify-center'} aria-hidden>
           {getFlag(countryCode)}
         </span>
-        <span className="text-lg font-medium">{country}</span>
+        <div className="flex flex-col">
+          <span className="text-lg font-medium">{country}</span>
+          {user && (
+            <span className="text-muted-foreground text-sm">
+              {user.charAt(0).toUpperCase() + user.slice(1)}&apos;s time
+            </span>
+          )}
+        </div>
       </div>
 
       <div className="flex flex-col items-end leading-none">
