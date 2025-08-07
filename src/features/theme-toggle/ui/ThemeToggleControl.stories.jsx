@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { ThemeMode } from '../../../components/providers/theme/types';
+import { ThemeMode } from '@/components/providers/theme/types';
 
 import { ThemeToggleControl } from './ThemeToggleControl';
 

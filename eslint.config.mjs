@@ -123,9 +123,6 @@ export default [
         },
       ],
 
-      // General
-      'no-console': ['error', { allow: ['warn', 'error'] }],
-
       // Prettier as errors
       'prettier/prettier': 'error',
     },
@@ -143,7 +140,6 @@ export default [
       'object-shorthand': ['error', 'always', { avoidQuotes: true }],
       'import/no-default-export': 'error',
       'import/order': ['error', { 'newlines-between': 'always', alphabetize: { order: 'asc', caseInsensitive: true } }],
-      'no-console': ['error', { allow: ['warn', 'error'] }],
       'prettier/prettier': 'error',
 
       // Belt & suspenders: disable typed rules here (in case any leak through)
@@ -173,7 +169,6 @@ export default [
     ],
     rules: {
       'import/no-default-export': 'off',
-      'no-console': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
     },
