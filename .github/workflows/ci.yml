@@ -43,14 +43,14 @@ jobs:
         run: npm run build
 
       - name: Start app (background)
-        run: PORT=3002 npm start & echo $! > .server-pid
+        run: npx next start -p 3002 -H 127.0.0.1 & echo $! > .server-pid
 
       - name: Wait for app
-        run: npx wait-on http://localhost:3002
+        run: npx wait-on http://127.0.0.1:3002 --timeout 120000
 
       - name: Run Cypress E2E
         env:
-          CYPRESS_BASE_URL: http://localhost:3002
+          CYPRESS_BASE_URL: http://127.0.0.1:3002
         run: npm run cy:run
 
       - name: Stop app
