@@ -24,6 +24,27 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Run CI checks (lint, typecheck, unit tests)
+        run: |
+          npm run lint
+          npm run typecheck
+          npm run test
+
+      - name: Start app (background)
+        run: PORT=3002 npm start & echo $! > .server-pid
+
+      - name: Wait for app
+        run: npx wait-on http://localhost:3002
+
+      - name: Run Cypress E2E
+        env:
+          CYPRESS_BASE_URL: http://localhost:3002
+        run: npm run cy:run
+
+      - name: Stop app
+        if: always()
+        run: kill $(cat .server-pid) || true
+
       - name: Build
         env:
           NEXT_TELEMETRY_DISABLED: 1
