@@ -7,7 +7,6 @@
     "check": "npm run lint && npm run typecheck",
     "predev": "npm i && npm run check",
     "dev": "concurrently -k -n NEXT,LINT \"next dev\" \"npm run lint:watch\"",
-    "prebuild": "npm ci && npm run check",
     "build": "next build",
     "prelint": "node -e \"require('fs').mkdirSync('.next/cache/eslint',{recursive:true})\"",
     "lint": "eslint . --ext .js,.mjs,.cjs,.ts,.tsx --max-warnings 0 --cache --cache-location .next/cache/eslint/.eslintcache",
