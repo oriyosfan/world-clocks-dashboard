@@ -43,7 +43,7 @@ const stylisticTypeCheckedTS = tseslint.configs.stylisticTypeChecked.map((c) => 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default [
   // Ignore build artifacts
-  { ignores: ['.next/**', 'node_modules/**', 'dist/**', 'build/**', 'coverage/**'] },
+  { ignores: ['.next/**', 'node_modules/**', 'dist/**', 'build/**', 'coverage/**', 'cypress/**'] },
 
   // Base JS rules
   js.configs.recommended,

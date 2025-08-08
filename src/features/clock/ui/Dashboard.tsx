@@ -70,7 +70,7 @@ export const Dashboard = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center p-4">
+      <div className="flex items-center justify-center p-4" data-cy="timezone-select-container">
         <SelectTimezone
           options={availableTimezones}
           className="w-md"
@@ -81,7 +81,10 @@ export const Dashboard = () => {
           }}
         />
       </div>
-      <div className="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+      <div
+        className="grid w-full grid-cols-1 gap-4 p-4 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
+        data-cy="clocks-grid"
+      >
         {selectedClocks.map((clock) => (
           <Card
             key={clock.key}

@@ -29,6 +29,7 @@ export const TagUserModal: React.FC<TagUserModalProps> = ({ open, onCancel, onOk
 
   return (
     <Modal
+      data-cy="tag-user-modal"
       title={`Tag User to ${clockCountry}`}
       open={open}
       onOk={handleOk}

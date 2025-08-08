@@ -1,6 +1,6 @@
 'use client';
 
-import { Button as AppButton, type ButtonProps as AppButtonProps } from '@infra/bridge';
+import { Button as AppButton, type ButtonProps as AppButtonProps } from 'antd';
 
 export type ButtonProps = AppButtonProps & {
   // Future props

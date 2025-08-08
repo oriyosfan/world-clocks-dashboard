@@ -15,3 +15,7 @@ coverage/
 !.env.example
 *storybook.log
 storybook-static
+
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/

@@ -3,8 +3,8 @@ import React from 'react';
 
 const TypedFlagIcons: Record<string, React.FC<{ title?: string }>> = FlagIcons;
 
+import { CloseOutlined } from '@/components/icons';
 import { Card as AppCard, Button } from '@/components/ui';
-import { CloseOutlined } from '@infra/bridge';
 
 export interface CardProps {
   country: string;
@@ -23,6 +23,7 @@ export const getFlag = (code: string): React.ReactNode | null => {
 
 export const Card: React.FC<CardProps> = ({ country, time, offset, countryCode, user, onClose, onClick }) => (
   <AppCard
+    data-cy="clock-card"
     className="relative w-full cursor-pointer rounded-xl p-0 shadow-sm transition-shadow duration-300 hover:shadow-md"
     onClick={onClick}
   >

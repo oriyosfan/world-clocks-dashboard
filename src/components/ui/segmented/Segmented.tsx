@@ -1,6 +1,6 @@
 'use client';
 
-import { Segmented as AppSegmented, type SegmentedProps as AppSegmentedProps } from '@infra/bridge';
+import { Segmented as AppSegmented, type SegmentedProps as AppSegmentedProps } from 'antd';
 
 export type SegmentedProps = AppSegmentedProps & {
   // Future props

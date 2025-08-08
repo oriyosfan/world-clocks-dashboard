@@ -1,6 +1,6 @@
 'use client';
 
-import { Select as AppSelect, type SelectProps as AppSelectProps } from '@infra/bridge';
+import { Select as AppSelect, type SelectProps as AppSelectProps } from 'antd';
 
 export type SelectProps = AppSelectProps & {
   // Future props

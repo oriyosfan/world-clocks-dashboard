@@ -1,6 +1,6 @@
 'use client';
 
-import { Modal as AppModal, type ModalProps as AppModalProps } from '@infra/bridge';
+import { Modal as AppModal, type ModalProps as AppModalProps } from 'antd';
 
 export type ModalProps = AppModalProps & {
   // Future props

@@ -15,7 +15,9 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "start": "next start",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "cy:open": "cypress open --config-file cypress.config.js | cat",
+    "cy:run": "cypress run --config-file cypress.config.js | cat"
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",
@@ -59,6 +61,7 @@
     "fork-ts-checker-webpack-plugin": "^9.1.0",
     "globals": "^16.3.0",
     "nodemon": "^3.1.10",
+    "cypress": "^13.13.2",
     "playwright": "^1.54.2",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.14",
