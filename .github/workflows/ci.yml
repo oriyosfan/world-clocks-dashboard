@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+    branches: [main, staging]
+  pull_request:
+    branches: [main, staging]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run type checks
+        run: npm run typecheck
+
+      - name: Run tests
+        env:
+          CI: true
+        run: npm run test
+
+      - name: Build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+        run: npm run build
+
+      - name: Start app (background)
+        run: npx next start -p 3002 -H 127.0.0.1 & echo $! > .server-pid
+
+      - name: Wait for app
+        run: npx wait-on http://127.0.0.1:3002 --timeout 120000
+
+      - name: Run Cypress E2E
+        env:
+          CYPRESS_BASE_URL: http://127.0.0.1:3002
+        run: npm run cy:run
+
+      - name: Stop app
+        if: always()
+        run: kill $(cat .server-pid) || true

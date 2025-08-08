@@ -1,0 +1,15 @@
+name: Protect Main Branch
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  enforce-from-staging:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail PRs to main unless from staging or hotfix/*
+        if: github.base_ref == 'main' && !(github.head_ref == 'staging' || startsWith(github.head_ref, 'hotfix/'))
+        run: |
+          echo "PRs to main must come from staging or hotfix/*" >&2
+          exit 1
