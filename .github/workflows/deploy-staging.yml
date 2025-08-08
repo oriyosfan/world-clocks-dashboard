@@ -7,6 +7,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,5 +31,5 @@ jobs:
 
       # Example: Vercel CLI deploy (optional). Set VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID secrets.
       - name: Deploy to Vercel (staging)
-        if: ${{ secrets.VERCEL_TOKEN && secrets.VERCEL_ORG_ID && secrets.VERCEL_PROJECT_ID }}
-        run: npx vercel deploy --prebuilt --yes --token ${{ secrets.VERCEL_TOKEN }} --scope ${{ secrets.VERCEL_ORG_ID }} --env NEXT_PUBLIC_STAGE=staging
+        if: ${{ env.VERCEL_TOKEN != '' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' }}
+        run: npx vercel deploy --prebuilt --yes --token ${{ env.VERCEL_TOKEN }} --scope ${{ env.VERCEL_ORG_ID }} --env NEXT_PUBLIC_STAGE=staging
