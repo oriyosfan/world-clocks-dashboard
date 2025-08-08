@@ -1,7 +1,7 @@
 /* eslint-disable */
 // TODO: fix eslint here
 'use client';
-
+import React from 'react';
 import { Select, type SelectProps } from '@/components/ui';
 import { type TimezoneOption } from '../utils/timezoneOptions';
 

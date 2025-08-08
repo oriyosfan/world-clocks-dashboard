@@ -58,6 +58,10 @@
     "src/**/*.stories.tsx",
     "**/*.stories.ts",
     "src/**/*.stories.ts",
-    ".storybook/**/*"
+    ".storybook/**/*",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
   ]
 }

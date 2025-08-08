@@ -1,5 +1,4 @@
 'use client';
-
 import { Card as AppCard, type CardProps as AppCardProps } from 'antd';
 import React, { forwardRef } from 'react';
 

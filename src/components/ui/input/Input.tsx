@@ -1,7 +1,7 @@
 'use client';
 
 import { Input as AppInput } from 'antd';
-import * as React from 'react';
+import React from 'react';
 
 import type { InputRef } from 'antd';
 

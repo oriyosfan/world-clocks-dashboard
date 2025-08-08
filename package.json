@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "test": "vitest run --reporter=verbose | cat",
     "check": "npm run lint && npm run typecheck",
     "predev": "npm i && npm run check",
     "dev": "concurrently -k -n NEXT,LINT \"next dev\" \"npm run lint:watch\"",
@@ -33,6 +34,10 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.6.1",
+    "jsdom": "^25.0.1",
     "@chromatic-com/storybook": "^4.1.0",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.32.0",

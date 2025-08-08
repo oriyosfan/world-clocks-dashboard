@@ -1,6 +1,7 @@
 'use client';
 
 import { Segmented as AppSegmented, type SegmentedProps as AppSegmentedProps } from 'antd';
+import React from 'react';
 
 export type SegmentedProps = AppSegmentedProps & {
   // Future props
