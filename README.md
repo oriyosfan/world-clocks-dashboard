@@ -81,9 +81,9 @@ npm run cy:open
 - Vercel build fails with missing eslint packages
   - Ensure lint doesn’t run during Vercel build (we removed prebuild lint) and keep `eslint: { ignoreDuringBuilds: true }` in `next.config.ts`.
 - CI hangs on “Wait for app”
-  - We now build first and start with `npx next start -p 3002 -H 127.0.0.1` and wait with a timeout. If you use env vars, inject them in the workflow.
+  - We now build first and start with `npx next start -p 3000 -H 127.0.0.1` and wait with a timeout. If you use env vars, inject them in the workflow.
 - Tests fail locally
   - Ensure dev deps installed: `npm i`
   - For component tests, ensure jsdom setup `vitest.setup.ts` is in place.
 - Cypress cannot reach the app
-  - Verify the URL and port; by default `CYPRESS_BASE_URL` is `http://127.0.0.1:3002` in CI. Locally use `npm run dev` then `npm run cy:open`.
+  - Verify the URL and port; by default `BASE_URL` is `http://127.0.0.1:3000` in CI. Locally use `npm run dev` then `npm run cy:open`.

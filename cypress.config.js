@@ -1,14 +1,13 @@
-/* eslint-disable */
-const { defineConfig } = require('cypress');
+import { defineConfig } from 'cypress';
 
-module.exports = defineConfig({
+export default defineConfig({
   video: true,
   screenshotOnRunFailure: true,
   retries: 1,
   viewportWidth: 1280,
   viewportHeight: 800,
   e2e: {
-    baseUrl: process.env.CYPRESS_BASE_URL || 'http://localhost:3002',
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
     specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
     supportFile: false,
   },

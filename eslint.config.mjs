@@ -177,6 +177,7 @@ export default [
       'vitest.config.ts',
       '.storybook/**',
       'src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+      'cypress.config.js',
     ],
     rules: {
       'import/no-default-export': 'off',
