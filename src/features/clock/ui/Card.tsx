@@ -1,3 +1,4 @@
+'use client';
 import * as FlagIcons from 'country-flag-icons/react/3x2';
 import React from 'react';
 

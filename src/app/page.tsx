@@ -1,4 +1,3 @@
-'use client';
 import { ClockDashboard } from '@/features/clock';
 import { ThemeToggle } from '@/features/theme-toggle';
 

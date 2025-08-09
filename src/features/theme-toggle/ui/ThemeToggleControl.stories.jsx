@@ -15,13 +15,13 @@ export default meta;
 export const Light = {
   render: () => {
     const [value, setValue] = useState(ThemeMode.Light);
-    return <ThemeToggleControl value={value} setValue={setValue} />;
+    return <ThemeToggleControl value={value} setValueAction={setValue} />;
   },
 };
 
 export const Dark = {
   render: () => {
     const [value, setValue] = useState(ThemeMode.Dark);
-    return <ThemeToggleControl value={value} setValue={setValue} />;
+    return <ThemeToggleControl value={value} setValueAction={setValue} />;
   },
 };
