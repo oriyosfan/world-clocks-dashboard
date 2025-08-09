@@ -36,6 +36,7 @@ export function createLocalStorage<T>(config: LocalStorageConfig<T>) {
         return defaultValue;
       }
 
+      // we have to pass the item to the deserialize function because it is a string and we need to parse it to the correct type
       // eslint-disable-next-line no-restricted-syntax
       return deserialize(item) as T;
     } catch (error) {

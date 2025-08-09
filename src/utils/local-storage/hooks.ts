@@ -28,6 +28,7 @@ export function useLocalStorage<T>(config: LocalStorageConfig<T>) {
     (newValue: T | ((prev: T) => T)) => {
       let valueToStore: T;
       if (typeof newValue === 'function') {
+        // we need to cast to a function type because the type checker is not smart enough to know that the type of newValue is a function
         // eslint-disable-next-line no-restricted-syntax
         const updater = newValue as (prev: T) => T;
         valueToStore = updater(value);
@@ -44,8 +45,7 @@ export function useLocalStorage<T>(config: LocalStorageConfig<T>) {
     [value, isInitialized],
   );
 
-  // eslint-disable-next-line no-restricted-syntax
-  return [value, setStoredValue] as const;
+  return [value, setStoredValue] satisfies [T, (newValue: T | ((prev: T) => T)) => void];
 }
 
 /**

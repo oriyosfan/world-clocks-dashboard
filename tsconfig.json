@@ -1,20 +1,16 @@
 {
   "compilerOptions": {
-    // Modern JS / DOM types
     "target": "ES2022",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
 
-    // ESM + bundler-friendly resolution (type-checking only; Next does the bundling)
     "module": "ESNext",
     "moduleResolution": "Bundler",
 
-    // React / Next handling
     "jsx": "preserve",
     "resolveJsonModule": true,
     "allowJs": false,
     "noEmit": true,
 
-    // Base URL + app alias (create-next-app default)
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
@@ -22,28 +18,42 @@
       "@infra/*": ["src/components/infra/*"]
     },
 
-    // Strictness (safest settings for app code)
     "strict": true,
+    // Optional properties' presence affects assignability exactly as written
     "exactOptionalPropertyTypes": true,
+    // Indexing into arrays/maps yields possibly-undefined unless checked
     "noUncheckedIndexedAccess": true,
+    // Require explicit override keyword when overriding class members
     "noImplicitOverride": true,
+    // Disallow property access via index signature when a named property exists
     "noPropertyAccessFromIndexSignature": true,
+    // Catch variables in catch blocks as unknown to force narrowing
     "useUnknownInCatchVariables": true,
+    // Error on missing switch cases; ensures exhaustive checks
     "noFallthroughCasesInSwitch": true,
+    // Require all code paths in a function to return
     "noImplicitReturns": true,
+    // Enforce consistent file name casing in imports across OSes
     "forceConsistentCasingInFileNames": true,
+    // Disallow unused local variables
     "noUnusedLocals": true,
+    // Disallow unused function parameters
     "noUnusedParameters": true,
 
-    // DX
+    // Developer experience optimizations
     "skipLibCheck": true,
+    // Enable faster incremental type-checking in dev
     "incremental": true,
+    // Persist incremental build info under .next cache
     "tsBuildInfoFile": ".next/cache/ts/tsconfig.tsbuildinfo",
+    // Allow default imports from CJS modules without synthetic named export shims
     "esModuleInterop": true,
+    // Treat each file as a separate module; required by Next/Vite toolchains
     "isolatedModules": true,
 
-    // *** New: keep source import/export exactly as written; force module semantics
+    // Keep import/export syntax exactly as written; do not add synthetic type-only imports
     "verbatimModuleSyntax": true,
+    // Treat all files as modules unless explicitly marked otherwise
     "moduleDetection": "force",
 
     "plugins": [{ "name": "next" }]

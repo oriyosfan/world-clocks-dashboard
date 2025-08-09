@@ -14,6 +14,10 @@
 
   /* Brand primary – matches AntD default primary by default */
   --brand-primary: #1677ff;
+
+  /* Shadows (used via Tailwind arbitrary values) */
+  --shadow-soft: 0 1px 2px 0 rgb(0 0 0 / 0.06);
+  --shadow-soft-hover: 0 4px 10px 0 rgb(0 0 0 / 0.08);
 }
 
 /* Map tokens into Tailwind v4 @theme so you can use them via utilities */
@@ -47,11 +51,15 @@ html.dark {
   --foreground: #f5f7fa;
 
   --muted: #111214;
-  --muted-foreground: #9ca3af;
+  --muted-foreground: #d5223d;
   --border: #2a2b2f;
 
   /* You can also change brand per mode if desired */
   --brand-primary: #1677ff;
+
+  /* Dark-mode tuned shadows */
+  --shadow-soft: 0 1px 2px 0 rgb(0 0 0 / 0.35);
+  --shadow-soft-hover: 0 6px 14px 0 rgb(0 0 0 / 0.45);
 }
 
 /* ──────────────────────────────────────────────────────────

@@ -1,3 +1,4 @@
+'use client';
 import { useTheme } from 'next-themes';
 
 import { ThemeMode, type ThemeModeValue } from '@/components/providers/theme/types';
@@ -10,7 +11,7 @@ export const ThemeToggleWrapper = () => {
   const value: ThemeModeValue = resolvedTheme === ThemeMode.Dark ? ThemeMode.Dark : ThemeMode.Light;
   return (
     <ClientOnly>
-      <ThemeToggleControl key={value} value={value} setValue={setTheme} />
+      <ThemeToggleControl key={value} value={value} setValueAction={setTheme} />
     </ClientOnly>
   );
 };
