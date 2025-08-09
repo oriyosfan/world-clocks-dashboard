@@ -42,6 +42,7 @@ export const TagUserModal: React.FC<TagUserModalProps> = ({ open, onCancel, onOk
         <p className="text-muted-foreground">Enter the name of the person you want to tag to this clock:</p>
         <Input
           placeholder="Enter user name..."
+          aria-label="User name"
           value={userInput}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUserInput(e.target.value)}
           onPressEnter={handleOk}

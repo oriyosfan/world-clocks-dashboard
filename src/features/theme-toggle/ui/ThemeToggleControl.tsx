@@ -1,3 +1,4 @@
+'use client';
 import { ThemeMode, type ThemeModeValue } from '@/components/providers/theme/types';
 import { Segmented } from '@/components/ui';
 
@@ -8,10 +9,12 @@ const ThemeToggleOptions: { label: string; value: ThemeModeValue }[] = [
 
 export const ThemeToggleControl = ({
   value,
-  setValue,
+  setValueAction,
 }: {
   value: ThemeModeValue;
-  setValue: (value: string) => void;
+  setValueAction: (value: string) => void;
 }) => {
-  return <Segmented value={value} onChange={(v) => setValue(v.toString())} options={ThemeToggleOptions} size="small" />;
+  return (
+    <Segmented value={value} onChange={(v) => setValueAction(v.toString())} options={ThemeToggleOptions} size="small" />
+  );
 };

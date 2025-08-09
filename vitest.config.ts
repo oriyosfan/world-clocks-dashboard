@@ -17,10 +17,10 @@ export default defineConfig({
     },
   },
   test: {
-    environment: 'jsdom',
     globals: true,
-    include: ['src/**/*.{test,spec}.{ts,tsx,js,jsx}'],
+    environment: 'jsdom',
     setupFiles: ['./vitest.setup.ts'],
     coverage: { reporter: ['text', 'html'] },
+    include: ['src/**/*.{test,spec}.{ts,tsx,js,jsx}'],
   },
 });

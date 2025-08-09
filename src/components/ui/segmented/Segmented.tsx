@@ -7,6 +7,6 @@ export type SegmentedProps = AppSegmentedProps & {
   // Future props
 };
 
-export function Segmented(props: SegmentedProps) {
-  return <AppSegmented {...props} />;
-}
+export const Segmented = React.forwardRef<HTMLDivElement, SegmentedProps>(function Segmented(props, ref) {
+  return <AppSegmented ref={ref} {...props} />;
+});
