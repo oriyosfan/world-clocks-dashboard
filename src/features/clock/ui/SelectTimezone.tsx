@@ -41,7 +41,7 @@ export const SelectTimezone = ({ value, onChange, className, options }: SelectTi
             {getFlag(o.countryCode)}
           </span>
           <span className="flex-1">{countryName}</span>
-          <span className="text-xs text-gray-500 tabular-nums">UTC{offsetStr}</span>
+          <span className="text-muted-foreground text-xs tabular-nums">UTC{offsetStr}</span>
         </div>
       ),
     };

@@ -34,7 +34,7 @@ export const Card: React.FC<CardProps> = React.memo(function ClockPresentational
   return (
     <AppCard
       data-cy="clock-card"
-      className="relative w-full cursor-pointer rounded-xl p-0 shadow-sm transition-shadow duration-300 hover:shadow-md"
+      className="relative w-full cursor-pointer rounded-xl border border-[--color-border] p-0 shadow-[var(--shadow-soft)] transition-shadow duration-300 hover:shadow-[var(--shadow-soft-hover)]"
       onClick={onClick}
     >
       {onClose && (
