@@ -6,6 +6,6 @@ export type ButtonProps = AppButtonProps & {
   // Future props
 };
 
-export function Button(props: ButtonProps) {
-  return <AppButton {...props} />;
-}
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(props, ref) {
+  return <AppButton ref={ref} {...props} />;
+});

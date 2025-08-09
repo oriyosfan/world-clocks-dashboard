@@ -5,8 +5,10 @@ import { Select, type SelectProps } from '@/components/ui';
 
 import { type TimezoneOption } from '../utils/timezoneOptions';
 
+import { getFlag } from './Card';
+
 export interface SelectTimezoneProps {
-  value?: string;
+  value: string;
   className?: string;
   options: TimezoneOption[];
   onChange: (zone: string) => void;
@@ -35,7 +37,9 @@ export const SelectTimezone = ({ value, onChange, className, options }: SelectTi
       search: displayName.toLowerCase(),
       label: (
         <div className="flex items-center gap-2">
-          <span className={`fi fi-${countryName.toLowerCase()} h-4 w-5`} />
+          <span className="flex h-4 w-5 items-center justify-center" aria-hidden>
+            {getFlag(o.countryCode)}
+          </span>
           <span className="flex-1">{countryName}</span>
           <span className="text-xs text-gray-500 tabular-nums">UTC{offsetStr}</span>
         </div>
