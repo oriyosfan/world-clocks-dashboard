@@ -43,8 +43,6 @@ export const Dashboard = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setForceTick((prev) => prev + 1);
-      // TODO: is this the best way to update the time?
-      // Look for react-hook-timer or similar or react-query
     }, 1000);
     return () => clearInterval(timer);
   }, []);

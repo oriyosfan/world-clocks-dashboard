@@ -1,15 +1,28 @@
-/* eslint-disable */
-// TODO: fix eslint here
 'use client';
 import React from 'react';
+
 import { Select, type SelectProps } from '@/components/ui';
+
 import { type TimezoneOption } from '../utils/timezoneOptions';
 
 export interface SelectTimezoneProps {
   value?: string;
   className?: string;
-  onChange: (zone: string) => void;
   options: TimezoneOption[];
+  onChange: (zone: string) => void;
+}
+
+// Narrowing helper to check presence of a `search` key
+function hasSearch(option: unknown): option is { search: unknown } {
+  return typeof option === 'object' && option !== null && 'search' in option;
+}
+
+// Type guard to ensure option has a `search` string field
+function isSearchableOption(option: unknown): option is { search: string } {
+  if (!hasSearch(option)) {
+    return false;
+  }
+  return typeof option.search === 'string';
 }
 
 export const SelectTimezone = ({ value, onChange, className, options }: SelectTimezoneProps) => {
@@ -38,9 +51,9 @@ export const SelectTimezone = ({ value, onChange, className, options }: SelectTi
       optionLabelProp="label"
       className={`${className}`}
       onClear={() => onChange('')}
-      onChange={(v) => onChange(v)}
       placeholder="Add time-zone..."
-      filterOption={(input, option) => (option?.['search'] as string).includes(input.toLowerCase())}
+      onChange={(v: string) => onChange(v)}
+      filterOption={(input, option) => isSearchableOption(option) && option.search.includes(input.toLowerCase())}
     />
   );
 };
