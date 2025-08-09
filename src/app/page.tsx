@@ -1,6 +1,5 @@
 import { ClockDashboard } from '@/features/clock';
 import { ThemeToggle } from '@/features/theme-toggle';
-
 export default function Home() {
   return (
     <div className="min-h-screen items-center justify-items-center p-8 pb-20 sm:p-20">

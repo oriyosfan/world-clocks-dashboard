@@ -20,6 +20,5 @@
     "source.fixAll.eslint": "explicit"
   },
 
-  // Optional: show as many problems as possible in Problems panel
   "problems.showCurrentInStatus": true
 }
