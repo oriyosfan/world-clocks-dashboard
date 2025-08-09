@@ -1,8 +1,8 @@
 import { makeMap } from '@/utils/type-helpers';
 
 export const ThemeMode = makeMap({
-  Light: 'light',
   Dark: 'dark',
+  Light: 'light',
 });
 
 export type ThemeModeKey = keyof typeof ThemeMode;
